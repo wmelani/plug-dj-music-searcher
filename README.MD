@@ -1,0 +1,1 @@
+A chrome extension for plug.dj to help add the playing song into different music services.
