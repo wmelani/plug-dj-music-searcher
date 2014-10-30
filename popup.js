@@ -37,7 +37,7 @@ function downloadCheckedLinksSC(){
 
 function downloadCheckedLinksXM() {
     var base = "http://music.xbox.com/search/";
-    base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
+    base = base + encodeURIComponent(allLinks[0].song.replace("the","") + " " + allLinks[0].artist.replace("the",""));
     chrome.tabs.create({
         url: base
     });
