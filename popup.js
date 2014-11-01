@@ -29,7 +29,7 @@ function downloadCheckedLinksGS(){
 }
 function downloadCheckedLinksSC(){
   var base = "https://soundcloud.com/search?q=";
-  base = base + encodeURIComponent(allLinks[0].song.replace("the","") + " " + allLinks[0].artist.replace("the",""));
+  base = base + encodeURIComponent(allLinks[0].song.replace(/(the)/gi,"") + " " + allLinks[0].artist.replace(/(the)/gi,""));
   chrome.tabs.create({
     url : base
   });
