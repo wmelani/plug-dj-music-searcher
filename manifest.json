@@ -6,7 +6,7 @@
    "description": "Search currently playing song on grooveshark, soundcloud, or xbox music.",
    "minimum_chrome_version": "16.0.884",
    "name": "Plug.DJ Music Searcher",
-   "permissions": [ "tabs", "http://plug.dj/*", "https://plug.dj/*" ],
-   "version": "0.3",
+   "permissions": [ "http://plug.dj/*", "https://plug.dj/*" ],
+   "version": "0.4",
    "manifest_version" : 2
 }
