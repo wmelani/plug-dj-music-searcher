@@ -29,7 +29,7 @@ function downloadCheckedLinksGS(){
 }
 function downloadCheckedLinksSC(){
   var base = "https://soundcloud.com/search?q=";
-  base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
+  base = base + encodeURIComponent(allLinks[0].song.replace("the","") + " " + allLinks[0].artist.replace("the",""));
   chrome.tabs.create({
     url : base
   });
@@ -37,7 +37,7 @@ function downloadCheckedLinksSC(){
 
 function downloadCheckedLinksXM() {
     var base = "http://music.xbox.com/search/";
-    base = base + encodeURIComponent(allLinks[0].song.replace("the","") + " " + allLinks[0].artist.replace("the",""));
+    base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
     chrome.tabs.create({
         url: base
     });
