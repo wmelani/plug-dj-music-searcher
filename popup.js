@@ -29,12 +29,21 @@ function downloadCheckedLinksGS(){
 }
 function downloadCheckedLinksSC(){
   var base = "https://soundcloud.com/search?q=";
-  base = base + encodeURIComponent(allLinks[0].song.replace(/(the)/gi,"") + " " + allLinks[0].artist.replace(/(the)/gi,""));
+  base = base + encodeURIComponent(stripTheThe(allLinks[0].song) + " " + stripTheThe(allLinks[0].artist));
   chrome.tabs.create({
     url : base
   });
 }
-
+function stripTheThe(content){
+	var strippedComponents = content.split(" ");
+	var stripped = "";
+  for (var i = 0; i < strippedComponents.length; i++)
+  {
+	var piece = strippedComponents[i];
+	stripped += piece.replace(/^the/gi,"") + " ";
+  }
+  return stripped;
+}
 function downloadCheckedLinksXM() {
     var base = "http://music.xbox.com/search/";
     base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
