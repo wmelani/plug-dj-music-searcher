@@ -22,14 +22,18 @@ function getArtist(link){
 }
 function downloadCheckedLinksGS(){
   var base = "http://grooveshark.com/#!/search?q=";
-  base = base + allLinks[0].song.replace(" ","+") + "+" + allLinks[0].artist.replace(" ","+");
+  base = base + removeYoutubeJunk(allLinks[0].song.replace(" ","+") + "+" + allLinks[0].artist.replace(" ","+"));
   chrome.tabs.create({
     url : base
   });
 }
+function removeYoutubeJunk(str){
+	return str.replace(/([\[(]){0,1}\s*(official){0,1}\s{0,1}(music){0,1} video([\])]){0,1}/gi,"")
+	.replace(/([\[(]){0,1}(full|official) audio([\])]){0,1}/gi,"").replace(/([\[(]){0,1}\s*(high){0,1}\s*(audio)\s*quality([\])]){0,1}/gi,"").trim();
+}
 function downloadCheckedLinksSC(){
   var base = "https://soundcloud.com/search?q=";
-  base = base + encodeURIComponent(stripTheThe(allLinks[0].song) + " " + stripTheThe(allLinks[0].artist));
+  base = base + encodeURIComponent(removeYoutubeJunk(stripTheThe(allLinks[0].song) + " " + stripTheThe(allLinks[0].artist)));
   chrome.tabs.create({
     url : base
   });
@@ -46,14 +50,14 @@ function stripTheThe(content){
 }
 function downloadCheckedLinksXM() {
     var base = "http://music.xbox.com/search/";
-    base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
+    base = base + encodeURIComponent(removeYoutubeJunk(allLinks[0].song + " " + allLinks[0].artist));
     chrome.tabs.create({
         url: base
     });
 }
 function downloadCheckedLinksSpotify() {
     var base = "https://open.spotify.com/search/";
-    base = base + encodeURIComponent(allLinks[0].song + " " + allLinks[0].artist);
+    base = base + encodeURIComponent(removeYoutubeJunk(allLinks[0].song + " " + allLinks[0].artist));
     chrome.tabs.create({
         url: base
     });
